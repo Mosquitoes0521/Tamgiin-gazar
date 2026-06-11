@@ -23,16 +23,7 @@ background:#f7f2e8;
 color:#333;
 overflow-x:hidden;
 position:relative;
-}
-
-body::before{
-content:"";
-position:fixed;
-inset:0;
-background:url('1000004526.png') center center no-repeat;
-background-size:cover;
-opacity:.18;
-z-index:-1;
+scroll-behavior:smooth;
 }
 
 /* HERO */
@@ -59,6 +50,41 @@ from{opacity:0; transform:translateY(40px);}
 to{opacity:1; transform:translateY(0);}
 }
 
+/* ===================== */
+/* TOP BANNER IMAGE */
+/* ===================== */
+.top-image{
+width:100%;
+display:flex;
+justify-content:center;
+margin-bottom:20px;
+}
+
+.top-image img{
+width:100%;
+max-width:900px;
+height:auto;
+border-radius:25px;
+object-fit:cover;
+box-shadow:0 15px 40px rgba(0,0,0,.25);
+
+animation: bannerFade 1.2s ease;
+}
+
+@keyframes bannerFade{
+from{
+opacity:0;
+transform:scale(1.05);
+filter:blur(6px);
+}
+to{
+opacity:1;
+transform:scale(1);
+filter:blur(0);
+}
+}
+
+/* TITLE */
 h1{
 font-family:'Playfair Display',serif;
 font-size:4rem;
@@ -109,7 +135,9 @@ border-radius:20px;
 box-shadow:0 5px 15px rgba(0,0,0,.08);
 }
 
-/* BUTTON STYLE */
+/* ===================== */
+/* CLICKABLE TITLES */
+/* ===================== */
 .program-title{
 font-family:'Playfair Display',serif;
 font-size:2.5rem;
@@ -119,10 +147,59 @@ margin:40px 0;
 cursor:pointer;
 user-select:none;
 transition:0.3s;
+position:relative;
 }
 
 .program-title:hover{
-transform:scale(1.02);
+transform:scale(1.03);
+color:#d4a017;
+letter-spacing:1px;
+}
+
+.program-title::after{
+content:"";
+position:absolute;
+left:50%;
+bottom:-8px;
+width:0%;
+height:2px;
+background:#b8860b;
+transition:0.3s;
+transform:translateX(-50%);
+}
+
+.program-title:hover::after{
+width:40%;
+}
+
+/* ===================== */
+/* DROPDOWN BOXES */
+/* ===================== */
+.hvndetzochid-text{
+font-size:1.1rem;
+line-height:2;
+text-align:center;
+max-width:800px;
+margin:0 auto;
+
+background:rgba(255,255,255,0.88);
+padding:20px;
+border-radius:18px;
+border:1px solid rgba(200,162,77,0.4);
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+
+animation: fadeDrop 0.4s ease;
+}
+
+@keyframes fadeDrop{
+from{
+opacity:0;
+transform:translateY(-10px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 /* TIMELINE */
@@ -133,13 +210,19 @@ position:relative;
 .event{
 display:flex;
 gap:30px;
-background:white;
+background:linear-gradient(135deg,#ffffff,#f8f8f8);
 padding:18px 20px;
 margin-bottom:15px;
 border-radius:15px;
-box-shadow:0 5px 15px rgba(0,0,0,.08);
+box-shadow:0 8px 20px rgba(0,0,0,.08);
 justify-content:center;
 text-align:center;
+transition:0.3s;
+}
+
+.event:hover{
+transform:translateY(-3px);
+box-shadow:0 15px 30px rgba(0,0,0,.12);
 }
 
 .time{
@@ -162,15 +245,6 @@ margin-top:60px;
 display:none;
 }
 
-/* TEXT BLOCK */
-.hvndetzochid-text{
-font-size:1.1rem;
-line-height:2;
-text-align:center;
-max-width:800px;
-margin:0 auto;
-}
-
 /* MOBILE */
 @media(max-width:768px){
 
@@ -180,10 +254,6 @@ padding:25px;
 
 h1{
 font-size:2rem;
-}
-
-body{
-font-size:15px;
 }
 
 .main-title{
@@ -199,12 +269,6 @@ font-size:1.5rem;
 font-size:0.9rem;
 line-height:1.8;
 }
-
-h2:not(.main-title){
-font-size:1.3rem !important;
-line-height:1.5;
-word-break:break-word;
-}
 }
 
 </style>
@@ -215,32 +279,32 @@ word-break:break-word;
 <section class="hero">
 <div class="hero-content">
 
-<div class="organization-header">
-<img src="9696.jpeg" style="width:150px;height:150px;">
-</div>
+  <div class="organization-header">
+    <img src="9696.jpeg" style="width:130px;height:150px;">
+  </div>
 
-<h1>Урилга</h1>
+  <h1>Урилга</h1>
 
-<p class="invitation-text">Эрхэм хүндэт ..................... таныг</p>
+  <p class="invitation-text">Эрхэм хүндэт ..................... таныг</p>
 
-<p class="invitation-subtext">
-"Монгол цэргийн өдөр"-ийг тохиолдуулан "Эмэгтэй хурандаа нарт<br>
-зориулсан Зэвсэгт хүчний Ерөнхий командлагчийн хүлээн авалт"-д <br> 
-хүрэлцэн ирэхийг урьж байна.
-</p>
+  <p class="invitation-subtext">
+  "Монгол цэргийн өдөр"-ийг тохиолдуулан "Эмэгтэй хурандаа нарт<br>
+  зориулсан Зэвсэгт хүчний Ерөнхий командлагчийн хүлээн авалт"-д <br> 
+  хүрэлцэн ирэхийг урьж байна.
+  </p>
 
-<div class="countdown">
-<div class="box"><h2 id="days">280</h2><span>Өдөр</span></div>
-<div class="box"><h2 id="hours">23</h2><span>Цаг</span></div>
-<div class="box"><h2 id="minutes">4</h2><span>Минут</span></div>
-<div class="box"><h2 id="seconds">17</h2><span>Секунд</span></div>
-</div>
+  <div class="countdown">
+    <div class="box"><h2 id="days">280</h2><span>Өдөр</span></div>
+    <div class="box"><h2 id="hours">23</h2><span>Цаг</span></div>
+    <div class="box"><h2 id="minutes">4</h2><span>Минут</span></div>
+    <div class="box"><h2 id="seconds">17</h2><span>Секунд</span></div>
+  </div>
 
-<div class="info-card">
-<h3>📅 2027.03.18</h3>
-<p>🕒 13:00–15:00</p>
-<p>📍 Новотел Улаанбаатар зочид буудал</p>
-</div>
+  <div class="info-card">
+    <h3>📅 2027.03.18</h3>
+    <p>🕒 13:00–15:00</p>
+    <p>📍 Новотел Улаанбаатар зочид буудал</p>
+  </div>
 
 </div>
 </section>
@@ -253,7 +317,6 @@ word-break:break-word;
 ЗОРИУЛСАН ЗЭВСЭГТ ХҮЧНИЙ ЕРӨНХИЙ КОМАНДЛАГЧИЙН УУЛЗАЛТ, ХҮНДЭТГЭЛИЙН АРГА ХЭМЖЭЭНИЙ ХӨТӨЛБӨР
 </h2>
 
-<!-- BUTTONS -->
 <h2 class="program-title clickable" onclick="toggle('guests')">
 Хүндэт зочид ▼
 </h2>
