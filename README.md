@@ -1,1 +1,0 @@
-# Tamgiin-gazar
